@@ -1,0 +1,105 @@
+<html>
+    <head>
+        <title>Layout</title>
+    </head>
+    <body>
+        <table border="3" height="600px" width="600px">
+            <tr bgcolor="skyblue">
+                <td colspan="2" height="90px" align="center"> <font face = "arial" color = "Red">
+                <h1>Pendaftaran Kursus </h1></td></font>
+                </tr>
+
+            <tr>
+                <td cols ="2" width="600px" height="400px" bgcolor="gray" valign="top">
+                    <font face = "arial" color="black" font size="5"> <b> Data Diri </b></font>
+                    <br>
+                    <br>
+
+                    <table border="0">
+                        <tr>
+                            <td> Nama </td>
+                            <td> <input type = "text" name="nama" required> </td>
+                        </tr>
+
+                        <tr>
+                            <td> Nim </td>
+                            <td> <input type = "text" name = "nim" value="" maxlength = "13"> </td>
+                        </tr>
+
+                        <tr>
+                            <td> E-mail </td>
+                            <td> <input type="email" name="email" required> </td>
+                        </tr>
+
+                        <tr>
+                            <td> Tanggal Lahir </td>
+                            <td> <input type="date" name="bday" > </td>
+                        </tr>
+
+                        <tr>
+                            <td> Jenis Kelamin </td>
+                            <td> <input type="radio" name="jenis_kelamin" value="L"> Laki-laki </td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td> <input type = "radio" name="jenis_kelamin" value="P"> Perempuan </td>
+                        </tr>
+
+                        <tr>
+                            <td> Pilih Program Kursus </td>
+                            <td> <input type="checkbox" name="program_1" value="C#"> C#</td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td> <input type="checkbox" name="program_2" value="Java"> Java</td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td> <input type="checkbox" name="program_3" value="SQL"> SQL</td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td> <input type="checkbox" name="program_4" value="HTML/PHP"> HTML dan PHP</td>
+                        </tr>
+
+                        <tr>
+                            <td> Pilihan Hari/Jam Kursus </td>
+                            <td> <select name="asal_kota" >
+                                <option value="Jam1"> Senin - Rabu/09.00 - 11.00</option>
+                                <option value="Jam2"> Senin - Rabu/13.00 - 15.00</option>
+                                <option value="Jam3"> Selasa - Kamis/09.00 - 11.00</option>
+                                <option value="Jam4"> Selasa - Kamis/13.00 - 15.00</option>
+                                <option value="Jam5"> Sabtu - Minggu/9.00 - 11.00</option>
+                                <option value="Jam6"> Sabtu - Minggu/13.00 - 15.00</option>
+                                </select>
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+
+            <tr>
+                <td bgcolor="salmon" colspan="2" height="160px" valign="top">
+                    <table border="0">
+                        <tr>
+                            <td> Komentar Anda </td>
+                        </tr>
+                        <tr>
+                            <td> <textarea name="komentar" rows="5" cols="60">
+                                </textarea> </td>
+                        </tr>
+                        <tr></tr>
+                        <tr></tr>
+                        <tr></tr>
+                        <tr></tr>
+                        <tr>
+                            <td><input type="reset" name="Ulangi" value="Reset">
+                                <input type="submit" name="kirim" value="Submit">
+                                <input type="button" name="Batal" value="Cancel"></td>
+                        </tr>
+                    </table>
+                    </td>
+            </tr>
+        </table>
+    </body>
+</html>
