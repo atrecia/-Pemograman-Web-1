@@ -1,0 +1,514 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>JPhotography</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <script src="https://kit.fontawesome.com/6213932414.js" crossorigin="anonymous"></script>
+
+    <style>
+        @import url("https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&display=swap");
+
+        * {
+            font-family: "Playfair Display", serif;
+        }
+
+        body {
+            background-color: #ffffff;
+            overflow-x: hidden;
+            color: #111111;
+        }
+
+        .border-side {
+            z-index: 2;
+            width: 68px;
+            height: 68px;
+            border-style: solid;
+            border-color: #252525;
+            background-color: transparent;
+            position: fixed;
+            pointer-events: none;
+        }
+
+        #top-right {
+            top: 0;
+            right: 0;
+            border-width: 12px 12px 0 0;
+        }
+
+        #top-left {
+            top: 0;
+            left: 0;
+            border-width: 12px 0 0 12px;
+        }
+
+        #bottom-right {
+            bottom: 0;
+            right: 0;
+            border-width: 0 12px 12px 0;
+        }
+
+        #bottom-left {
+            bottom: 0;
+            left: 0;
+            border-width: 0 0 12px 12px;
+        }
+
+        .custom-navbar {
+            background-color: #f8f9fa;
+            padding: 26px 0;
+        }
+
+        .custom-navbar-inner {
+            width: 84%;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 34px;
+            flex-wrap: wrap;
+        }
+
+        .custom-brand {
+            text-decoration: none;
+            color: #111111;
+            font-size: 32px;
+            font-weight: 700;
+            white-space: nowrap;
+        }
+
+        .custom-menu {
+            list-style: none;
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            gap: 46px;
+            margin: 0;
+            padding: 0;
+            flex-wrap: nowrap;
+        }
+
+        .custom-menu li a {
+            text-decoration: none;
+            color: #252525;
+            font-size: 17px;
+            white-space: nowrap;
+        }
+
+        .custom-menu li.active {
+            border: 2px solid rgb(186, 183, 183);
+            border-radius: 22px; 
+            padding: 8px 21px;
+        }
+
+        .custom-menu li.active a {
+            color: #111111;
+        }
+
+        .jumbotron .container {
+            margin-top: 78px;
+        }
+
+        .jumbotron h1 {
+            font-size: 42px;
+            font-weight: 600;
+        }
+
+        .jumbotron h2 {
+            font-size: 33px;
+            font-weight: 600;
+        }
+
+        .jumbotron p {
+            letter-spacing: 8px;
+            font-size: 17px;
+            font-weight: 400;
+            margin-top: 15px;
+        }
+
+        .filter-menu {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 34px;
+            padding-left: 0;
+            margin: 96px 0 24px;
+            flex-wrap: wrap;
+        }
+
+        .filter-menu li {
+            border: none;
+            background-color: transparent;
+            padding: 8px 17px;
+            font-size: 17px;
+        }
+
+        .filter-menu li.active {
+            border: 2px solid grey;
+            border-radius: 20px;
+            padding: 7px 20px;
+        }
+
+        .gallery-wrapper {
+            padding-left: 8px;
+            padding-right: 8px;
+        }
+
+        .row {
+            margin-left: 0;
+            margin-right: 0;
+        }
+ 
+        .image {
+            margin: 0;
+            padding: 5px;
+        }
+
+        .image .card {
+            width: 100%;
+            aspect-ratio: 4 / 3;
+            overflow: hidden;
+            border: none;
+            border-radius: 0;
+        }
+
+        .image .card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        #last-row-image {
+            border-bottom: 1px solid #e3e3e3;
+            margin-bottom: 95px;
+            padding-bottom: 95px;
+        }
+
+        footer {
+            text-align: center;
+            margin: 50px 0;
+        }
+
+        footer h3 {
+            font-size: 30px;
+            font-weight: 700;
+        }
+
+        footer p {
+            font-family: Arial, sans-serif;
+            color: grey;
+            font-size: 16px;
+        }
+
+        .social-menu {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            padding-left: 0;
+            margin-top: 20px;
+            flex-wrap: wrap;
+        }
+
+        .social-menu li {
+            padding: 8px;
+        }
+
+        .fa {
+            color: grey;
+        }
+
+        @media (max-width: 900px) {
+            .custom-navbar-inner {
+                width: 86%;
+                display: flex;
+                flex-direction: column;
+                align-items: flex-start;
+                justify-content: flex-start;
+                gap: 12px;
+            }
+
+            .custom-brand {
+                font-size: 29px;
+                font-weight: 700;
+            }
+
+            .custom-menu {
+                width: 100%;
+                display: flex;
+                justify-content: flex-start;
+                align-items: center;
+                gap: 34px;
+                flex-wrap: nowrap;
+            }
+
+            .custom-menu li a {
+                font-size: 15px;
+            }
+
+            .custom-menu li.active {
+                padding: 6px 17px;
+            }
+
+            .jumbotron h1 {
+                font-size: 34px;
+            }
+
+            .jumbotron h2 {
+                font-size: 27px;
+            }
+
+            .jumbotron p {
+                font-size: 14px;
+                letter-spacing: 6px;
+            }
+        }
+
+        @media (max-width: 650px) {
+            .custom-navbar-inner {
+                width: 86%;
+                flex-direction: column;
+                align-items: flex-start;
+                justify-content: flex-start;
+                gap: 10px;
+            }
+
+            .custom-brand {
+                font-size: 27px;
+                font-weight: 700;
+            }
+
+            .custom-menu {
+                width: 100%;
+                justify-content: flex-start;
+                align-items: center;
+                gap: 24px;
+                flex-wrap: nowrap;
+            }
+
+            .custom-menu li a {
+                font-size: 13px;
+            }
+
+            .custom-menu li.active {
+                padding: 6px 16px;
+            }
+
+            .jumbotron .container {
+                margin-top: 50px;
+            }
+
+            .jumbotron h1 {
+                font-size: 30px;
+            }
+
+            .jumbotron h2 {
+                font-size: 24px;
+            }
+
+            .jumbotron p {
+                font-size: 13px;
+                letter-spacing: 5px;
+            }
+
+            .filter-menu {
+                margin-top: 70px;
+                gap: 18px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .custom-navbar-inner {
+                width: 86%;
+                align-items: flex-start;
+            }
+
+            .custom-brand {
+                font-size: 23px;
+            }
+
+            .custom-menu {
+                justify-content: flex-start;
+                gap: 13px;
+                flex-wrap: nowrap;
+            }
+
+            .custom-menu li a {
+                font-size: 11px;
+            }
+
+            .custom-menu li.active {
+                padding: 5px 12px;
+            }
+
+            .jumbotron h1 {
+                font-size: 25px;
+            }
+
+            .jumbotron h2 {
+                font-size: 20px;
+            }
+
+            .jumbotron p {
+                font-size: 11px;
+                letter-spacing: 3px;
+            }
+
+            .filter-menu {
+                gap: 8px;
+            }
+
+            .filter-menu li {
+                font-size: 14px;
+                padding: 6px 8px;
+            }
+
+            .filter-menu li.active {
+                padding: 5px 12px;
+            }
+
+            .image {
+                padding: 3px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="border-side" id="top-left"></div>
+    <div class="border-side" id="top-right"></div>
+    <div class="border-side" id="bottom-left"></div>
+    <div class="border-side" id="bottom-right"></div>
+
+    <nav class="custom-navbar">
+        <div class="custom-navbar-inner">
+            <a class="custom-brand" href="#">JPhotography</a>
+
+            <ul class="custom-menu">
+                <li class="active"><a href="#">HOME</a></li>
+                <li><a href="#">ABOUT ME</a></li>
+                <li><a href="#">PORTFOLIO</a></li>
+                <li><a href="#">CONTACT</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <section class="jumbotron">
+        <div class="container text-center">
+            <h1>Hi. Hello..I Am Naila Atresia Rahma!</h1>
+            <h2>I Travel Around The World To Get The Best Photos..!</h2>
+            <p>AWARD WINNING PHOTOGRAPHER / CINEMATOGRAPHER / PAINTER</p>
+        </div>
+    </section>
+
+    <ul class="filter-menu">
+        <li class="active">All</li>
+        <li>Landscape</li>
+        <li>Potrait</li>
+        <li>Product</li>
+    </ul>
+
+    <main class="container-fluid gallery-wrapper">
+
+        <div class="row justify-content-center mx-0">
+            <div class="col-3 image">
+                <div class="card">
+                    <img src="fotografer .jpeg" alt="Foto fotografer">
+                </div>
+            </div>
+
+            <div class="col-3 image">
+                <div class="card">
+                    <img src="foto fotografer.jpeg" alt="Foto fotografer">
+                </div>
+            </div>
+
+            <div class="col-3 image">
+                <div class="card">
+                    <img src="foto bunga.jpeg" alt="Foto bunga">
+                </div>
+            </div>
+
+            <div class="col-3 image">
+                <div class="card">
+                    <img src="foto bungaa.jpeg" alt="Foto bunga">
+                </div>
+            </div>
+        </div>
+
+        <div class="row justify-content-center mx-0">
+            <div class="col-3 image">
+                <div class="card">
+                    <img src="foto pemandangan.jpeg" alt="Foto pemandangan">
+                </div>
+            </div>
+
+            <div class="col-3 image">
+                <div class="card">
+                    <img src="foto pemandangann.jpeg" alt="Foto pemandangan">
+                </div>
+            </div>
+
+            <div class="col-3 image">
+                <div class="card">
+                    <img src="foto pemandangannn.jpeg" alt="Foto pemandangan">
+                </div>
+            </div>
+
+            <div class="col-3 image">
+                <div class="card">
+                    <img src="kucing imuett.jpeg" alt="Foto kucing">
+                </div>
+            </div>
+        </div>
+
+        <div class="row justify-content-center mx-0" id="last-row-image">
+            <div class="col-3 image">
+                <div class="card">
+                    <img src="foto pelukis anjay.jpeg" alt="Foto pelukis">
+                </div>
+            </div>
+
+            <div class="col-3 image">
+                <div class="card">
+                    <img src="foto pelukis handal.jpeg" alt="Foto pelukis">
+                </div>
+            </div>
+
+            <div class="col-3 image">
+                <div class="card">
+                    <img src="foto pelukis profesional .jpeg" alt="Foto pelukis">
+                </div>
+            </div>
+
+            <div class="col-3 image">
+                <div class="card">
+                    <img src="foto anjay when ya.jpeg" alt="Foto pemandangan">
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+    <footer>
+        <h3>JPhotography</h3>
+        <p>&copy; Copyrights 2026. All Rights Reserved.</p>
+
+        <ul class="social-menu">
+            <li><i class="fa fa-dribbble fa-lg"></i></li>
+            <li><i class="fa fa-behance fa-lg"></i></li>
+            <li><i class="fa fa-instagram fa-lg"></i></li>
+            <li><i class="fa fa-500px fa-lg"></i></li>
+            <li><i class="fa fa-flickr fa-lg"></i></li>
+            <li><i class="fa fa-facebook-square fa-lg"></i></li>
+            <li><i class="fa fa-twitter fa-lg"></i></li>
+        </ul>
+    </footer>
+
+</body>
+</html>
